@@ -1,0 +1,34 @@
+version: '3.8'
+
+volumes:
+
+  grafana-data:
+    driver: local
+
+  prometheus-data:
+    driver: local
+
+services:
+
+  prometheus:
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - /Users/wind57/Documents/personal/sandboxes/micrometer-spring/src/main/resources:/config
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/config/prometheus.yaml"
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped

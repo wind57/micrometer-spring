@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id "io.spring.dependency-management" version '1.0.12.RELEASE'
+    id 'org.springframework.boot' version '2.7.2'
+
+    // needed for Mac with M1 only
+    id 'com.google.osdetector' version "1.7.0"
+}
+
+ext {
+    springBootBomVersion = '2.7.2'
+    junitBomVersion = '5.9.0'
+    springSessionBom = '2021.2.0'
+}
+
+group 'wind57.sandbox.micrometer'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootBomVersion}"
+        mavenBom "org.junit:junit-bom:${junitBomVersion}"
+    }
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    implementation ('com.blazegraph:bigdata-core:2.1.4') {
+        exclude(group: 'org.slf4j', module: 'slf4j-reload4j')
+    }
+
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'io.micrometer:micrometer-registry-jmx'
+    implementation 'io.micrometer:micrometer-registry-atlas'
+}
+
+bootRun {
+    systemProperties = System.properties as Map<String, ?>
+}
