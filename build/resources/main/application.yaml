@@ -1,0 +1,14 @@
+management:
+  metrics:
+    export:
+      influx:
+        db: micrometer-sample
+        step: 60s
+        uri: http://localhost:8086
+        user-name: wind57
+        password: blueRED57
+        token: "OP_i5T-KaPiAtWZjLzgHVpG-RG9ltc1x50oDEzpoe9Bf-CrVyD_kzOVDV5KbSsxGMjX0cowWMHfXjhzSnesZCQ=="
+        auto-create-db: true
+        org: "ER"
+        bucket: "micrometer-sample"
+        enabled: true

@@ -1,0 +1,26 @@
+# to run influxdb
+docker exec influxdb2 influx setup \
+      --username wind57 \
+      --password blueRED57 \
+      --org ER \
+      --bucket ER \
+      --force
+
+
+# find token
+docker exec influxdb2 influx auth list \
+      --user wind57 \
+      --hide-headers | cut -f 3
+
+
+# inside influxdb container:
+
+influx v1 dbrp create --default --bucket-id f40d6d5dc96cf803 --db micrometer-sample --rp default
+
+# to run grafana
+# URL http://host.docker.internal:8086
+# 'Custom http headers' -> Authorization : <TOKEN>
+docker compose -f docker-compose.yaml up -d --wait
+
+
+

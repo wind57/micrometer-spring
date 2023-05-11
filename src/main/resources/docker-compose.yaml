@@ -10,21 +10,23 @@ volumes:
 
 services:
 
-  prometheus:
-    extra_hosts:
-      - host.docker.internal:host-gateway
-    image: prom/prometheus:latest
-    container_name: prometheus
-    ports:
-      - "9090:9090"
-    volumes:
-      - /Users/wind57/Documents/personal/sandboxes/micrometer-spring/src/main/resources:/config
-      - prometheus-data:/prometheus
-    restart: unless-stopped
-    command:
-      - "--config.file=/config/prometheus.yaml"
+#  prometheus:
+#    extra_hosts:
+#      - host.docker.internal:host-gateway
+#    image: prom/prometheus:latest
+#    container_name: prometheus
+#    ports:
+#      - "9090:9090"
+#    volumes:
+#      - /Users/wind57/Documents/personal/sandboxes/micrometer-spring/src/main/resources:/config
+#      - prometheus-data:/prometheus
+#    restart: unless-stopped
+#    command:
+#      - "--config.file=/config/prometheus.yaml"
 
   grafana:
+    extra_hosts:
+      - host.docker.internal:host-gateway
     image: grafana/grafana-oss:latest
     container_name: grafana
     ports:

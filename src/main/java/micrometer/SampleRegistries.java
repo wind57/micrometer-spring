@@ -1,8 +1,8 @@
 package micrometer;
 
-import com.netflix.spectator.atlas.AtlasConfig;
+//import com.netflix.spectator.atlas.AtlasConfig;
 import com.sun.net.httpserver.HttpServer;
-import io.micrometer.atlas.AtlasMeterRegistry;
+//import io.micrometer.atlas.AtlasMeterRegistry;
 import io.micrometer.core.instrument.Clock;
 import io.micrometer.jmx.JmxConfig;
 import io.micrometer.jmx.JmxMeterRegistry;
@@ -21,20 +21,20 @@ public final class SampleRegistries {
     }
 
     // I am not providing any config for this one
-    public static AtlasMeterRegistry atlas() {
-        return new AtlasMeterRegistry(new AtlasConfig() {
-
-            @Override
-            public Duration step() {
-                return Duration.ofSeconds(10);
-            }
-
-            @Override
-            public String get(String k) {
-                return null;
-            }
-        }, Clock.SYSTEM);
-    }
+//    public static AtlasMeterRegistry atlas() {
+//        return new AtlasMeterRegistry(new AtlasConfig() {
+//
+//            @Override
+//            public Duration step() {
+//                return Duration.ofSeconds(10);
+//            }
+//
+//            @Override
+//            public String get(String k) {
+//                return null;
+//            }
+//        }, Clock.SYSTEM);
+//    }
 
     public static PrometheusMeterRegistry prometheus() {
 
